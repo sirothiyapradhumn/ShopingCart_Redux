@@ -15,6 +15,9 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import './Product.css'
+import * as actionTypes from "../../../redux/action";
+import { connect } from 'react-redux';
+
 const useStyles = makeStyles({
     root: {
       maxWidth: 345,
@@ -29,12 +32,12 @@ function Product2({ product, addToCart, loadCurrentItem }) {
   const history = useHistory();
     const classes = useStyles();
     const handleOnClick = ()=>{
-      // loadCurrentItem(product);
+      loadCurrentItem(product);
       // history.push(`/product/${product.id}`)
-      history.push({
-        pathname:`/product/${product.id}`,
-        state: product
-      })
+      // history.push({
+      //   pathname:`/product/${product.id}`,
+      //   state: product
+      // })
       
     }
     return (
@@ -71,6 +74,14 @@ function Product2({ product, addToCart, loadCurrentItem }) {
         </CardActions>
       </Card>
     )
+}  
+
+const mapDispatchToProp = (dispatch) =>{
+  return {
+    loadCurrentItem: (item) => dispatch({type:actionTypes.LOAD_CURRENT_ITEM, payload: {item: item}}),
+
+    addToCart: (id) => dispatch({type:actionTypes.ADD_TO_CART, payload: {id: id}})
+  }
 }
 
-export default Product2
+export default connect(null, mapDispatchToProp)(Product2)

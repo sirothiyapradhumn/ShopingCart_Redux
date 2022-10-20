@@ -21,4 +21,6 @@ const mapStateToProp = (state)=>{
     products : state.products,
   }
 }
+
+
 export default connect(mapStateToProp)(Products);

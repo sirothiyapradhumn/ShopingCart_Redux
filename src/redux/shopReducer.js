@@ -1,6 +1,7 @@
 import smartphone from './smartphone.jpg'
 import book from './book.jpg'
 import speaker from './speaker.jpg'
+import * as actionTypes from './action';
 
 const intialState = {
     products: [
@@ -44,8 +45,28 @@ const intialState = {
 
 
 const shopReducer = (state = intialState, action) =>{
-
-    return state;
+    switch(action.type){
+        case actionTypes.ADD_TO_CART:
+            const item = state.products.find((product) => product.id == action.payload.id);
+            const inCart = state.cart.find((product) => product.id == action.payload.id ? true : false);
+            return {
+                ...state,
+                cart: inCart ? 
+                state.cart.find((product) => product.id == action.payload.id 
+                ? {...product, qty: product.qty+1 } : product)
+                :
+                [...state.cart, {...item, qty: 1}]
+            }
+        
+        case actionTypes.LOAD_CURRENT_ITEM:
+            return{
+                ...state, currentItem: action.payload.item
+            }
+            
+        default: return state    
+    }
+    
+    //return state;
 }
 
 export default shopReducer;

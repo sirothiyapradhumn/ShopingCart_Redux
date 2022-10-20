@@ -52,7 +52,7 @@ const shopReducer = (state = intialState, action) =>{
             return {
                 ...state,
                 cart: inCart ? 
-                state.cart.find((product) => product.id == action.payload.id 
+                state.cart.map((product) => product.id == action.payload.id 
                 ? {...product, qty: product.qty+1 } : product)
                 :
                 [...state.cart, {...item, qty: 1}]

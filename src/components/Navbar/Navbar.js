@@ -19,12 +19,14 @@ const useStyles = makeStyles((theme) => ({
         position:"relative"
     }
   }));
+    
 function Navbar2({cart=[]}) {
     const classes = useStyles();
     const [cartCount, setCartCount] = useState(0);
 
     useEffect(() => {
       let count = 0;
+      console.log("abc", cart);
       cart.forEach((item) => {
         count += item.qty;
       });
@@ -43,7 +45,9 @@ function Navbar2({cart=[]}) {
               </Link>
             </Typography>
             <Link to='/cart' style={{color:'#2f3542'}}>
-            <Button color="inherit">Cart<ShoppingCartIcon style={{marginLeft:'12%', marginRight:'1%'}}/><span className='cartNumber' style={{}}>{cartCount}</span></Button>
+            <Button color="inherit">Cart<ShoppingCartIcon style={{marginLeft:'12%', marginRight:'1%'}}/>
+              <span className='cartNumber' style={{}}>{cartCount}</span>
+            </Button>
             </Link>
           </Toolbar>
         </AppBar>
@@ -51,4 +55,10 @@ function Navbar2({cart=[]}) {
     )
 }
 
-export default Navbar2;
+const mapStateToProps = (state) =>{
+  return {
+    cart: state.cart
+  }
+}
+
+export default connect(mapStateToProps)(Navbar2);

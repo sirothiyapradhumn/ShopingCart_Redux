@@ -26,7 +26,7 @@ function Navbar2({cart=[]}) {
 
     useEffect(() => {
       let count = 0;
-      console.log("abc", cart);
+      //console.log("abc", cart);
       cart.forEach((item) => {
         count += item.qty;
       });

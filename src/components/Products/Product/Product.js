@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from "react-router-dom";
-// import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 // import {
 //   loadCurrentItem,
@@ -33,7 +32,7 @@ function Product2({ product, addToCart, loadCurrentItem }) {
     const classes = useStyles();
     const handleOnClick = ()=>{
       loadCurrentItem(product);
-      // history.push(`/product/${product.id}`)
+      history.push(`/product/${product.id}`)
       // history.push({
       //   pathname:`/product/${product.id}`,
       //   state: product

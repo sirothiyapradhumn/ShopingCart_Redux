@@ -66,8 +66,13 @@ const shopReducer = (state = intialState, action) =>{
         case actionTypes.DELETE_FROM_CART:
             return {
                 ...state, cart: state.cart.filter((productObj)=>productObj.id!=action.payload.id)
-            }    
+            }
             
+        case actionTypes.ADJUST_QUANTITY:
+            return {
+                ...state, cart: state.cart.map((productObj)=>productObj.id==action.payload.id?{...productObj, qty:action.payload.qty}:productObj)
+            }     
+
         default: return state    
     }
     

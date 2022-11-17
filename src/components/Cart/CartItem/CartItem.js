@@ -62,6 +62,8 @@ function CartItem1({ item, adjustQty, removeFromCart }) {
 const mapDispatchToProp = (dispatch)=>{
   return{
     removeFromCart: (id)=>dispatch({type: actionTypes.DELETE_FROM_CART, payload: {id:id}}),
+
+    adjustQty:(id, qty)=>dispatch({type: actionTypes.ADJUST_QUANTITY, payload:{id:id, qty:qty}})
   }
 }
 

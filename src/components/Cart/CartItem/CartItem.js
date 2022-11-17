@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import './CartItem.css';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Button from '@material-ui/core/Button';
+import * as actionTypes from '../../../redux/action'
 
 function CartItem1({ item, adjustQty, removeFromCart }) {
     const [input, setInput] = useState(item.qty);
@@ -58,4 +59,10 @@ function CartItem1({ item, adjustQty, removeFromCart }) {
     )
 }
 
-export default CartItem1;
+const mapDispatchToProp = (dispatch)=>{
+  return{
+    removeFromCart: (id)=>dispatch({type: actionTypes.DELETE_FROM_CART, payload: {id:id}}),
+  }
+}
+
+export default connect(null, mapDispatchToProp)(CartItem1);
